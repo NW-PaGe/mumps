@@ -1,0 +1,27 @@
+# washington/subsampling.yaml
+
+focal:
+  washington_all:
+    query: "country == 'USA' & division == 'Washington'"
+    max_sequences: 999999   # effectively unlimited
+    min_length: 8000
+    min_date: 2006
+    group_by: "year division"
+
+# Context: rest of USA (excluding WA)
+context_usa:
+  usa_context:
+    query: --query "(country == 'USA') & (division != 'Washington') & (MuV_genotype == 'G')"
+    max_sequences: 1200
+    min_length: 8000
+    min_date: 2006
+    group_by: "year division"
+
+# Context: North America outside USA
+context_na:
+  na_context:
+    query: --query "(region == 'North America') & (country != 'USA') & (MuV_genotype == 'G')"
+    max_sequences: 1200
+    min_date: 2006
+    min_length: 8000
+    group_by: "year country"

@@ -1,0 +1,63 @@
+# This configuration file should contain all required configuration parameters
+# for the Nextclade workflow to run to completion.
+#
+# Define optional config parameters with their default values here so that users
+# do not have to dig through the workflows to figure out the default values
+# Define wildcards used for building trees in the workflow, also used in the intermediate files or auxillariary default file names.
+# {builds} represents different analysis, in this case genomic region
+builds: ["sh", "genome"]
+
+# Both files must be zstd compressed
+sequences_url: "https://data.nextstrain.org/files/workflows/mumps/sequences.fasta.zst"
+metadata_url: "https://data.nextstrain.org/files/workflows/mumps/metadata.tsv.zst"
+
+strain_id_field: "accession"
+
+clade_membership:
+  metadata: "{build}/reference_strains.tsv"
+  fallback: "MuV_genotype"
+
+filter:
+  exclude: "{build}/exclude.txt"
+  include: "{build}/include.txt"
+  sh: '--exclude-all'
+  genome: --subsample-max-sequences 300 --min-date 1950 --group-by MuV_genotype --min-length 12000 --exclude-where clade_membership=''
+
+align:
+  sh: '--fill-gaps --remove-reference'
+  genome: '--fill-gaps'
+
+refine:
+  sh: '--root mid_point'
+  genome: '--root mid_point'
+
+ancestral:
+  inference: "joint"
+  annotation: "{build}/reference.gb"
+  genes:
+    sh: ['SH']
+    genome: ['F', 'HN', 'I', 'L', 'M', 'NP', 'P', 'SH', 'V']
+
+traits:
+  sampling_bias_correction: 3
+  sh: clade_membership MuV_genotype
+  genome: clade_membership MuV_genotype
+
+colors:
+  # Note: Reusing files from the phylogenetic workflow
+  color_schemes: "color_schemes.tsv"
+  color_orderings: "color_orderings.tsv"
+
+export:
+  auspice_config: "{build}/auspice_config.json"
+  # Note: Reusing files from the phylogenetic workflow
+  lat_longs: "lat_longs.tsv"
+  description: "description.md"
+
+assemble_dataset:
+  reference: "{build}/reference.fasta"
+  pathogen_json: "{build}/pathogen.json"
+  sequences: "{build}/sequences.fasta"
+  annotation: "{build}/genome_annotation.gff3"
+  readme: "{build}/README.md"
+  changelog: "{build}/CHANGELOG.md"

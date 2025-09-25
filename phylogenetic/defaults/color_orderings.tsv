@@ -1,0 +1,334 @@
+# Asia
+country	Israel
+country	Palestine
+country	Lebanon
+country	Jordan
+country	Syria
+country	Georgia
+country	Iraq
+country	Armenia
+country	Saudi Arabia
+country	Kuwait
+country	Yemen
+country	Bahrain
+country	Qatar
+country	Iran
+country	United Arab Emirates
+country	Oman
+country	Uzbekistan
+country	Afghanistan
+country	Kazakhstan
+country	Pakistan
+country	Tajikistan
+country	Maldives
+country	Kyrgyzstan
+country	India
+country	Sri Lanka
+country	Nepal
+country	Asia
+country	Bangladesh
+country	Myanmar
+country	Thailand
+country	Malaysia
+country	Mongolia
+country	Laos
+country	Singapore
+country	China
+country	Cambodia
+country	Vietnam
+country	Hong Kong
+country	Indonesia
+country	Brunei
+country	Taiwan
+country	Philippines
+country	Timor-Leste
+country	South Korea
+country	Japan
+
+# Oceania
+country	French Polynesia
+country	Palau
+country	Australia
+country	Papua New Guinea
+country	Oceania
+country	Micronesia
+country	Solomon Islands
+country	Vanuatu
+country	Marshall Islands
+country	New Zealand
+country	Kiribati
+country	Fiji
+
+# Africa
+country	Cabo Verde
+country	Gambia
+country	Guinea-Bissau
+country	Senegal
+country	Sierra Leone
+country	Guinea
+country	Liberia
+country	Mauritania
+country	Côte d'Ivoire
+country	Morocco
+country	Mali
+country	Burkina Faso
+country	Ghana
+country	Togo
+country	Benin
+country	Algeria
+country	Sao Tome and Principe
+country	Nigeria
+country	Tunisia
+country	Niger
+country	Equatorial Guinea
+country	Gabon
+country	Cameroon
+country	Republic of the Congo
+country	Libya
+country	Namibia
+country	Angola
+country	Chad
+country	Central African Republic
+country	Democratic Republic of the Congo
+country	Africa
+country	Botswana
+country	South Africa
+country	Zambia
+country	Lesotho
+country	Sudan
+country	South Sudan
+country	Zimbabwe
+country	Burundi
+country	Rwanda
+country	Egypt
+country	Eswatini
+country	Uganda
+country	Malawi
+country	Mozambique
+country	Tanzania
+country	Kenya
+country	Ethiopia
+country	Djibouti
+country	Union of the Comoros
+country	Madagascar
+country	Somalia
+country	Seychelles
+country	Mauritius
+
+# Europe
+country	Iceland
+country	Portugal
+country	Ireland
+country	Spain
+country	United Kingdom
+country	Andorra
+country	France
+country	Belgium
+country	Netherlands
+country	Luxembourg
+country	Monaco
+country	Switzerland
+country	Norway
+country	Denmark
+country	Liechtenstein
+country	Germany
+country	Europe
+country	Italy
+country	Malta
+country	Slovenia
+country	Sweden
+country	Austria
+country	Croatia
+country	Czech Republic
+country	Bosnia and Herzegovina
+country	Poland
+country	Slovakia
+country	Montenegro
+country	Albania
+country	Hungary
+country	Serbia
+country	Kosovo
+country	North Macedonia
+country	Greece
+country	Lithuania
+country	Romania
+country	Bulgaria
+country	Latvia
+country	Estonia
+country	Finland
+country	Belarus
+country	Moldova
+country	Ukraine
+country	Cyprus
+country	Turkey
+country	Azerbaijan
+country	Russia
+
+# South America
+country	Argentina
+country	Uruguay
+country	Chile
+country	Paraguay
+country	Bolivia
+country	South America
+country	Brazil
+country	Peru
+country	Ecuador
+country	Colombia
+country	Suriname
+country	Guyana
+country	Venezuela
+country	Trinidad and Tobago
+country	Bonaire
+country	Curacao
+country	Aruba
+
+# North America
+country	Panama
+country	Costa Rica
+country	Grenada
+country	Nicaragua
+country	Saint Vincent and the Grenadines
+country	Barbados
+country	El Salvador
+country	Saint Lucia
+country	Honduras
+country	Dominica
+country	Guatemala
+country	Guadeloupe
+country	Belize
+country	Antigua and Barbuda
+country	Saint Kitts and Nevis
+country	Saint Barthélemy
+country	Sint Maarten
+country	Saint Martin
+country	Jamaica
+country	Dominican Republic
+country	Haiti
+country	Mexico
+country	Cuba
+country	Bahamas
+country	North America
+country	Bermuda
+country	USA
+country	Canada
+
+################
+
+region	Asia
+region	Oceania
+region	Africa
+region	Europe
+region	South America
+region	North America
+
+################
+
+# Canadian Provences
+division	Alberta
+division	British Columbia
+division	Manitoba
+division	New Brunswick
+division	Newfoundland and Labrador
+division	Northwest Territories
+division	Nova Scotia
+division	Nunavut
+division	Ontario
+division	Prince Edward Island
+division	Quebec
+division	Saskatchewan
+division	Yukon
+
+# USA States
+division	Alaska
+division	Alabama
+division	Arkansas
+division	Arizona
+division	California
+division	Colorado
+division	Connecticut
+division	Delaware
+division	Florida
+division	Georgia
+division	Hawaii
+division	Iowa
+division	Idaho
+division	Illinois
+division	Indiana
+division	Kansas
+division	Kentucky
+division	Louisiana
+division	Massachusetts
+division	Maryland
+division	Maine
+division	Michigan
+division	Minnesota
+division	Missouri
+division	Mississippi
+division	Montana
+division	North Carolina
+division	North Dakota
+division	Nebraska
+division	New Hampshire
+division	New Jersey
+division	New Mexico
+division	Nevada
+division	New York
+division	Ohio
+division	Oklahoma
+division	Oregon
+division	Pennsylvania
+division	Puerto Rico
+division	Rhode Island
+division	South Carolina
+division	South Dakota
+division	Tennessee
+division	Texas
+division	Utah
+division	Virginia
+division	Vermont
+division	Washington
+division	Wisconsin
+division	West Virginia
+division	Wyoming
+
+# ################
+
+MuV_genotype	A
+MuV_genotype	B
+MuV_genotype	C
+MuV_genotype	D
+MuV_genotype	F
+MuV_genotype	G
+MuV_genotype	H
+MuV_genotype	I
+MuV_genotype	J
+MuV_genotype	K
+MuV_genotype	L
+MuV_genotype	N
+
+MuV_genotype_nextclade_sh	A
+MuV_genotype_nextclade_sh	B
+MuV_genotype_nextclade_sh	C
+MuV_genotype_nextclade_sh	D
+MuV_genotype_nextclade_sh	F
+MuV_genotype_nextclade_sh	G
+MuV_genotype_nextclade_sh	H
+MuV_genotype_nextclade_sh	I
+MuV_genotype_nextclade_sh	J
+MuV_genotype_nextclade_sh	K
+MuV_genotype_nextclade_sh	L
+MuV_genotype_nextclade_sh	N
+
+MuV_genotype_nextclade_genome	A
+MuV_genotype_nextclade_genome	B
+MuV_genotype_nextclade_genome	C
+MuV_genotype_nextclade_genome	D
+MuV_genotype_nextclade_genome	F
+MuV_genotype_nextclade_genome	G
+MuV_genotype_nextclade_genome	H
+MuV_genotype_nextclade_genome	I
+MuV_genotype_nextclade_genome	J
+MuV_genotype_nextclade_genome	K
+MuV_genotype_nextclade_genome	L
+MuV_genotype_nextclade_genome	N
