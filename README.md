@@ -8,8 +8,8 @@
 - **Considerations**: The Washington-focused mumps build reuses much of the Nextstrain global mumps workflow
 , with local modifications to the configuration and subsampling strategies. This README explains how the Washington-specific build relates to and depends on the global mumps build, and how it can be adapted.
 - **Nextstrain Build/s Location/s**:
-- https://github.com/NW-PaGe/mumps
-- https://github.com/nextstrain/mumps
+  - https://github.com/NW-PaGe/mumps
+  - https://github.com/nextstrain/mumps
 
 ## Table of Contents
 - [Pathogen Epidemiology](#pathogen-epidemiology)
@@ -55,27 +55,29 @@
 ## Scientific Decisions
 Nextstrain builds are designed for specific purposes and not all types of builds for a particular pathogen will answer the same questions. The following are critical decisions that were made during the development of this build that should be kept in mind when analyzing the data and using this build. *Subsampling, root selection, and reference selection must be included at minimum.*
 
-- **Nomenclature**: [CDC genotype nomenclature; this build only includes genotype G.]
-- **Subsampling**: [For this build, subsampling was designed to prioritize Washington State sequences while maintaining appropriate contextual diversity. All available Washington genotype G sequences are retained without limitation to ensure complete coverage of local transmission dynamics. To provide regional perspective, U.S. sequences outside of Washington are subsampled evenly by division, while additional contextual sequences are drawn from Canada and Mexico. A reduced number of global sequences are included to preserve phylogenetic background without overwhelming the Washington-specific signals.]
-- **Root selection**: [The root sequence is not specified, but inferred by `augur ancestral`]
-- **Reference selection**: [The alignment and mutation calling are performed against a MuV-G reference genome (such as NC_002200), which provides a consistent baseline for variant calling and comparative analysis.]
-- **Inclusion/Exclusion**: [In terms of inclusion and exclusion, the build accepts only sequences from 2006 onward to reflect the era of genotype G predominance. Sequences from other genotypes, those with incomplete genomes, and those with insufficient or poor-quality metadata are excluded to ensure reliability.]
+- **Nomenclature**: CDC genotype nomenclature; this build only includes genotype G.
+- **Subsampling**: For this build, subsampling was designed to prioritize Washington State sequences while maintaining appropriate contextual diversity. All available Washington genotype G sequences are retained without limitation to ensure complete coverage of local transmission dynamics. To provide regional perspective, U.S. sequences outside of Washington are subsampled evenly by division, while additional contextual sequences are drawn from Canada and Mexico. A reduced number of global sequences are included to preserve phylogenetic background without overwhelming the Washington-specific signals.
+- **Root selection**: The root sequence is not specified, but inferred by `augur ancestral`.
+- **Reference selection**: The alignment and mutation calling are performed against a MuV-G reference genome (such as NC_002200), which provides a consistent baseline for variant calling and comparative analysis.
+- **Inclusion/Exclusion**: In terms of inclusion and exclusion, the build accepts only sequences from 2006 onward to reflect the era of genotype G predominance. Sequences from other genotypes, those with incomplete genomes, and those with insufficient or poor-quality metadata are excluded to ensure reliability.
 
-- **Other adjustments**: [Additional adjustments include applying maximum thresholds on the number of contextual sequences retained from outside Washington while leaving Washington itself unrestricted, guaranteeing that no local data are lost. Low-quality or hypervariable regions of the genome are masked during analysis to reduce noise and improve phylogenetic accuracy.] 
+- **Other adjustments**: Additional adjustments include applying maximum thresholds on the number of contextual sequences retained from outside Washington while leaving Washington itself unrestricted, guaranteeing that no local data are lost. Low-quality or hypervariable regions of the genome are masked during analysis to reduce noise and improve phylogenetic accuracy.
 
 ## Getting Started
-This project is set up so that a new user can clone the repository, place (or link) curated mumps sequence and metadata files into the expected data/ directory, and run an end-to-end Washington-focused build with a single command. The workflow is orchestrated by Snakemake via the Nextstrain CLI and uses Augur for phylogenetics and Auspice for visualization. The build is opinionated toward complete retention of Washington sequences and carefully limited contextual sampling from the U.S., North America, and a small global background, so that state-level questions (introductions vs. sustained transmission; linkages to other jurisdictions) can be answered quickly and reproducibly.
-- [Washington Prioritization: The build is opinionated toward complete retention of Washington sequences and carefully limited contextual sampling from the U.S., North America, and a small global background, so that state-level questions (introductions vs. sustained transmission; linkages to other jurisdictions) can be answered quickly and reproducibly.]
+- **Washington Prioritization**: The build exposes geography at the U.S. state level via the Division field, allowing rapid side-by-side comparisons of Washington sequences against other states without leaving the tree. Coloring or filtering by Division makes it straightforward to spot cross-border introductions and to confirm whether an apparent Washington clade is actually seeded by multiple states.
+- **MuV genotype & Nextclade Calls**: In Auspice, the dataset ships with genotype-aware views that surface three complementary annotations: the source MuV genotype (GenBank) and the Nextclade genotype calls for both the SH gene and the whole genome. Switching among these in the Color by menu lets analysts verify concordance (or flag discrepancies) between database metadata and algorithmic assignments, which is especially helpful when triaging suspected clusters or quality-controlling new submissions.
 
 ### Data Sources & Inputs
-The build expects a FASTA of MuV sequences and a TSV of metadata that conform to the column conventions used by the Nextstrain mumps workflow. In practice, the simplest path is to reuse the curated inputs from the Nextstrain mumps repo: either copy those files into this repository’s data/ directory or create symlinks so they always track upstream updates. The filenames the workflow looks for are data/sequences.fasta and data/metadata.tsv. You do not need to pre-filter these inputs to Washington; the Washington-focused selection and contextual subsampling are handled by the build’s configuration. If you maintain a local include/exclude list (for example, to force-include specific Washington accessions or exclude problematic records), place those files under config/washington/ and reference them in the Washington config so they are applied consistently each run. This build focuses on genotype G whole genomes collected from 2006 onward. Inputs that are non-G, incomplete, or missing critical metadata will be filtered out during the Augur steps to preserve analysis quality. Leaving the raw inputs broad (rather than pre-trimmed to Washington only) ensures the pipeline can apply its WA-first retention and context-aware sampling logic exactly as designed.
+How Samples are Ingested from NCBI: `mumps/ingest/rules/fetch_from_ncbi.smk` 
+How Samples are Prepared for Sequencing: `mumps/phylogenetic/rules/prepare_sequences.smk`
 
-- **Sequence Data**: [Data sources]
-- **Metadata**: [Metadata sources]
+This build relies on publicly available data sourced from data.nextstrain.org which originates from NCBI. This data is generously shared by labs around the world and deposited in NCBI genbank by the authors. Please contact these labs first if you plan to publish using their data.
+
+- **Sequence Data**: All sequence data originate from [NCBI](https://www.ncbi.nlm.nih.gov/).
+- **Metadata**: All metadata originate from [NCBI](https://www.ncbi.nlm.nih.gov/).
 - **Expected Inputs**:
-    - `[data_location]/sequences.fasta` (containing viral genome sequences)
-    - `[data_location]/metadata.xls` (with relevant sample information)
-- **Private data, if applicable**:
+    - `mumps/phylogenetic/data/sequences.fasta` (containing viral genome sequences)
+    - `mumps/phylogenetic/data/metadata.tsv` (with relevant sample information)
 
 ### Setup & Dependencies
 #### Installation
@@ -89,26 +91,30 @@ nextstrain check-setup
 #### Clone the repository:
 
 ```
-git clone https://github.com/[your-github-repo].git
-cd [your-github-repo]
+git clone https://github.com/https://github.com/NW-PaGe/mumps.git
+cd mumps/phylogenetic
 ```
 
 ## Run the Build
-*(Explain how to run the build with test data. Example text on how this might be explained is below)*
-
-To test the pipeline with the provided example data located in `[data_location]/` make sure you are located in the build folder `[your-github-repo]` before running the build command:
-
+Ensure you are located in the build folder `phylogenetic` before running the build command:
 ```
-nextstrain build .
+nextstrain build . --configfile washington/config.yaml
 ```
 
-When you run the build using `nextstrain build .`, Nextstrain uses Snakemake as the workflow manager to automate genomic analyses. The Snakefile in a Nextstrain build defines how raw input data (sequences and metadata) are processed step-by-step in an automated way. Nextstrain builds are powered by Augur (for phylogenetics) and Auspice (for visualization) and Snakemake is used to automate the execution of these steps using Augur and Auspice based on file dependencies.
+When you run the build, Snakemake serves as the workflow manager that orchestrates the genomic analyses in an automated fashion. The Snakefile defines the series of steps needed to process raw sequence and metadata inputs, ensuring that each stage is carried out in the correct order. Within this framework, Augur handles the phylogenetic analyses, Auspice generates the interactive visualizations, and Snakemake coordinates their execution by tracking file dependencies.
+Alternative configuration files allow you to adjust the workflow for specific goals. For example, using `--configfile washington/config.yaml` tailors the subsampling scheme so that the build prioritizes sequences from Washington state first, followed by North America, and then global samples, with the proportions controlled by the settings in the configuration file.
+
+Before running the `ingest` workflow, the build will automatically pull data from the Nextstrain mumps data repository, which is periodically refreshed. However, if you prefer to retrieve the most current data directly from NCBI, you should run the ingest workflow first by executing `nextstrain build .` from the `ingest` directory. The Washington-focused build will check the `ingest/results` directory for locally generated data and use it if available; otherwise, it defaults to the Nextstrain repository. To guarantee that your build always incorporates the latest sequences from NCBI, you can run the following commands from the main `mumps/` directory:
+```
+nextstrain build ingest --forceall &&
+nextstrain build phylogenetic --configfile washington/config.yaml
+```
+This ensures that the ingest step refreshes the dataset before the Washington-specific build is executed.
 
 ### Run the Build with Test Data (Optional)
-For builds that do not programmatically pull data from NCBI or another source, include a `test_data/` folder containing a minimal working example of test data that can be successfully executed by the build.
+An alternative configuration file is available for running the phylogenetic workflow on a smaller example dataset. By using `--configfile build-configs/ci/config.yaml`, the workflow is adjusted so that the dataset in `phylogenetic/example_data` is copied into `phylogenetic/data`, thereby skipping the default steps of downloading and decompressing the full Nextstrain dataset.
 
 ### Expected Outputs
-*(Outline the expected outputs and in which folders to locate them)*
 The file structure of the repository is as follows with `*`" folders denoting folders that are the build's expected outputs.
 
 ```
@@ -116,42 +122,51 @@ The file structure of the repository is as follows with `*`" folders denoting fo
 ├── README.md
 ├── Snakefile
 ├── auspice*
-├── clade-labeling
-├── config
-├── new_data
+├── build-configs
+├── data
+├── defaults
+├── example_data
 ├── results*
 └── scripts
+├── washington
 ```
-More details on the file structure of this build can be found here (link to Wiki page that contains contents of  Repository File Structure Overview section).
+More details on the file structure of this build can be found [here](https://github.com/DOH-DAH0303/mumps/wiki)
 
 After successfully running the build there will be two output folders containing the build results.
+- `auspice/` folder contains: `mumps_washington.json`. This is the final result viewable by auspice.
+- `results/washington` folder contains: The raw tree, amino acid mutations, nucleotide mutations etc. 
 
-- `auspice/` folder contains: a .json file
-- `results/` folder contains:
 
 ### Visualize Results
-- Dropping .json into auspice.us
-- `nextstrain view auspice/*.json`
-
-- Link folks to tree interpretation resources that people can use to make their inferences.
+- Open [auspice.us](auspice.us) in a web browser, and drop `phylogenetic/auspice/mumps_washington.json` in as input. 
+- For guidance on phylogenetic inference, see [The Applied Genomic Epidemiology Handbook](https://www.czbiohub.org/ebook/applied-genomic-epidemiology-handbook/welcome-to-the-applied-genomic-epidemiology-handbook/).
 
 
 ## Customization for Local Adaptation
- *[Brief overview on how to adapt this build for another jurisdiction, such as a state, city, county, or country. Including links to Readmes in other sections that contain detailed instructions on what and how to modify the files]*
+This build can be customized for use by other states. This is configurable by editing the following files:
 
-This build can be customized for use by other demes, including as states, cities, counties, or countries.
-This build can be adapted for another jurisdiction (e.g., Oregon, California) by:
-
-Updating config/[jurisdiction].yaml with appropriate filters.
-
-Editing subsampling/[jurisdiction].yaml to retain all local sequences.
-
-Adjusting builds.yaml to define the new build target.
-
-- What files or folders need to be modified in order to adapt for other jurisdictions? If this is lengthy then you can link to a wiki page tab that goes into detail on how someone might adapt this build for their jurisdiction.
+  - `mumps/phylogenetic/washington/auspice_config.json` lines 2, 4, and 12. 
+    - **line 2:** "title": "Genomic Epidemiology of Mumps Virus - [Insert State] State Focused Build",
+    - **line 4:** {"name": "[Insert name]", "url": "[Insert url]"}
+    - **line 12:** "build_url": "[Insert url]",
+      
+  - `mumps/phylogenetic/washington/config.yaml` lines 5, 9, 10, 20, and 35. 
+    - **line 5:**   - [Insert your state's name]
+    - **line 9:**   auspice_config: [Insert your state's folder name]/auspice_config.json
+    - **line 10:**  description: [Insert your state's folder name]/description.md
+    - **line 20:**  [change to match line 5]: [Insert your state's folder name]/subsampling.yaml
+    - **line 35:**  [Change to match line 5 and 20]: >-
+      
+  - `mumps/phylogenetic/washington/description.md`
+    - Change the description file to meet your own builds needs.
+   
+  - `mumps/phylogenetic/washington/subsampling.yaml` lines 4, 5, and 14. 
+    - **line 4:**   [Insert your state]_all:
+    - **line 5:**   query: "country == 'USA' & division == '[Insert your state]'"
+    - **line 14:**  query: --query "(country == 'USA') & (division != '[Insert your state]') & (MuV_genotype == 'G')"
 
 ## Contributing
-For any questions please submit them to our [Discussions](insert link here) page otherwise software issues and requests can be logged as a Git [Issue](insert link here).
+For any questions please submit them to our [Discussions](https://github.com/orgs/NW-PaGe/discussions) page. Software issues and requests can be logged as a Git [Issue](insert link here).
 
 ## License
 This project is licensed under a modified GPL-3.0 License.
