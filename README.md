@@ -1,9 +1,9 @@
-# [Mumps- Washington Focused Build]
+# Mumps- Washington Focused Build
 
 ## Build Overview
-- **Build Name**: [Mumps- Washington Focused Build]
-- **Pathogen/Strain**: [Mumps/MuV]
-- **Scope**: [Genotype G whole genomes (2006–present).]
+- **Build Name**: Mumps- Washington Focused Build
+- **Pathogen/Strain**: Mumps/MuV
+- **Scope**: Genotype G whole genomes (2006–present).
 - **Purpose**: This repository contains the Nextstrain build for Washington State genomic surveillance of mumps. It is specifically designed to retain all available mumps sequences from Washington State, while also incorporating representative samples from the United States, North America, and a reduced set of global background sequences. The build focuses on whole-genome sequences of genotype G collected since 2006, which is the lineage responsible for nearly all recent mumps outbreaks in the United States.
 - **Considerations**: The Washington-focused mumps build reuses much of the Nextstrain global mumps workflow
 , with local modifications to the configuration and subsampling strategies. This README explains how the Washington-specific build relates to and depends on the global mumps build, and how it can be adapted.
