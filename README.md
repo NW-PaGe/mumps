@@ -91,7 +91,7 @@ nextstrain check-setup
 #### Clone the repository:
 
 ```
-git clone https://github.com/https://github.com/NW-PaGe/mumps.git
+git clone https://github.com/NW-PaGe/mumps.git
 cd mumps/phylogenetic
 ```
 
