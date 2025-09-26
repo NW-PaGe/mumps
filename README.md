@@ -67,10 +67,10 @@ Nextstrain builds are designed for specific purposes and not all types of builds
 - **MuV genotype & Nextclade Calls**: In Auspice, the dataset ships with genotype-aware views that surface three complementary annotations: the source MuV genotype (GenBank) and the Nextclade genotype calls for both the SH gene and the whole genome. Switching among these in the Color by menu lets analysts verify concordance (or flag discrepancies) between database metadata and algorithmic assignments, which is especially helpful when triaging suspected clusters or quality-controlling new submissions.
 
 ### Data Sources & Inputs
-How Samples are Ingested from NCBI: `mumps/ingest/rules/fetch_from_ncbi.smk` 
-How Samples are Prepared for Sequencing: `mumps/phylogenetic/rules/prepare_sequences.smk`
+- How Samples are Ingested from NCBI: `mumps/ingest/rules/fetch_from_ncbi.smk` 
+- How Samples are Prepared for Sequencing: `mumps/phylogenetic/rules/prepare_sequences.smk`
 
-This build relies on publicly available data sourced from data.nextstrain.org which originates from NCBI. This data is generously shared by labs around the world and deposited in NCBI genbank by the authors. Please contact these labs first if you plan to publish using their data.
+- This build relies on publicly available data sourced from data.nextstrain.org which originates from NCBI. This data is generously shared by labs around the world and deposited in NCBI genbank by the authors. Please contact these labs first if you plan to publish using their data.
 
 - **Sequence Data**: All sequence data originate from [NCBI](https://www.ncbi.nlm.nih.gov/).
 - **Metadata**: All metadata originate from [NCBI](https://www.ncbi.nlm.nih.gov/).
