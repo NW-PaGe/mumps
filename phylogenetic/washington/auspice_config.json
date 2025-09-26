@@ -95,8 +95,8 @@
         "schemaVersion":"3.0.0",
         "attributes": {
           "name": "Mumps virus North America tree",
-          "reference name": "Reconstructed ancestor from North America tree",
-          "reference accession": "none"
+          "reference name": "KM597072_REF",
+          "reference accession": "KM597072"
         }
       }
     }
