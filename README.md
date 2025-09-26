@@ -53,14 +53,13 @@
   - Link Pathogen Genomic Profile if we have one created
 
 ## Scientific Decisions
-Nextstrain builds are designed for specific purposes and not all types of builds for a particular pathogen will answer the same questions. The following are critical decisions that were made during the development of this build that should be kept in mind when analyzing the data and using this build. *Subsampling, root selection, and reference selection must be included at minimum.*
+Nextstrain builds are designed for specific purposes and not all types of builds for a particular pathogen will answer the same questions. The following are critical decisions that were made during the development of this build that should be kept in mind when analyzing the data and using this build.
 
-- **Nomenclature**: CDC genotype nomenclature; this build only includes genotype G.
+- **Nomenclature**: CDC genotype nomenclature.
 - **Subsampling**: For this build, subsampling was designed to prioritize Washington State sequences while maintaining appropriate contextual diversity. All available Washington genotype G sequences are retained without limitation to ensure complete coverage of local transmission dynamics. To provide regional perspective, U.S. sequences outside of Washington are subsampled evenly by division, while additional contextual sequences are drawn from Canada and Mexico. A reduced number of global sequences are included to preserve phylogenetic background without overwhelming the Washington-specific signals.
-- **Root selection**: The root sequence is not specified, but inferred by `augur ancestral`.
-- **Reference selection**: The alignment and mutation calling are performed against a MuV-G reference genome (such as NC_002200), which provides a consistent baseline for variant calling and comparative analysis.
+- **Root selection**: In order to be Nextclade compatable, the reference sequence for the North America and Global builds from the original Nextstrain Mumps repo was used as the forced root. GenBank KM597072 https://www.ncbi.nlm.nih.gov/nuccore/KM597072
+- **Reference selection**: The alignment and mutation calling are performed against a MuV-G reference genome KM597072, which provides a consistent baseline for variant calling and comparative analysis.
 - **Inclusion/Exclusion**: In terms of inclusion and exclusion, the build accepts only sequences from 2006 onward to reflect the era of genotype G predominance. Sequences from other genotypes, those with incomplete genomes, and those with insufficient or poor-quality metadata are excluded to ensure reliability.
-
 - **Other adjustments**: Additional adjustments include applying maximum thresholds on the number of contextual sequences retained from outside Washington while leaving Washington itself unrestricted, guaranteeing that no local data are lost. Low-quality or hypervariable regions of the genome are masked during analysis to reduce noise and improve phylogenetic accuracy.
 
 ## Getting Started
@@ -122,11 +121,14 @@ The file structure of the repository is as follows with `*`" folders denoting fo
 ├── README.md
 ├── Snakefile
 ├── auspice*
+└── benchmarks*
 ├── build-configs
 ├── data
 ├── defaults
 ├── example_data
+└── logs*
 ├── results*
+└── rules
 └── scripts
 ├── washington
 ```
@@ -177,35 +179,3 @@ You may use, modify, and distribute this work, but commercial use is strictly pr
 Workflow based on Nextstrain mumps
 Adapted structure from NW-PaGe mpox
 Data contributions from GISAID, GenBank, CDC, and WA DOH laboratories.
-
-<!-- Repository File Structure Overview [**Move contents of this section to Wiki**]
-(This section outlines the high-level file structure of the repo to help folks navigate the repo. If the build follows the pathogen template repo feel free to make this section brief and link to the pathogen template repo resource)*
-
-Example text below:
-
-This Nextstrain build follows the structure detailed in the [Pathogen Repo Guide](https://github.com/nextstrain/pathogen-repo-guide).
-Mainly, this build contains [number] workflows for the analysis of [pathogen] virus data:
-- ingest/ [link to ingest workflow] Download data from [source], clean, format, curate it, and assign clades.
-- phylogenetic/ [link to phylogenetic workflow] Subsample data and make phylogenetic trees for use in nextstrain.
-
-OR
-The file structure of the repository is as follows with `*`" folders denoting folders that are the build's expected outputs.
-
-```
-.
-├── README.md
-├── Snakefile
-├── auspice*
-├── clade-labeling
-├── config
-├── new_data
-├── results*
-└── scripts
-```
-
-- `Snakefile`: Snakefile description
-- `config/`: contains what
-- `new_data/`: contains What
-- `scripts/`: contains what
-- `clade-labeling`: contains what
--->
