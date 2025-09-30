@@ -4,15 +4,14 @@
 title: "Mumps in Washington"
 default_build_name: washington
 auspice_json_prefix: mumps
-# If the repo uses a global inputs block, you usually don't need to redefine it here.
 
 builds:
   washington:
     # label in Auspice
     title: "Mumps — Washington focus"
-    region: North America        # keeps background/traits consistent with NA build
-    country: USA                 # helps some filters/traits
-    division: Washington         # used by subsampling + traits
+    region: North America        
+    country: USA                 
+    division: Washington         
     # wire up the per-build files this workflow expects:
     files:
       auspice_config: washington/auspice_config.json
@@ -25,7 +24,6 @@ builds:
 subsampling:
   washington: washington/subsampling.yaml
 
-# Optional: tweak per-rule settings without touching rules.
 filter:
   washington:
     # Keep NA/USA context for background while focusing WA
