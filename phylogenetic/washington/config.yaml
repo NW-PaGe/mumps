@@ -22,6 +22,7 @@ subsampling:
   washington: washington/subsampling.yaml
 
 strain_id_field: "accession"
+
 # ---- Per-build settings (IMPORTANT: strings, not nested dicts) ----
 # Filter: CLI flags appended to augur filter
 filter:
@@ -47,18 +48,17 @@ traits:
 # Fixed root allows for Nextclade compatability while still matching the original build's intended reference. 
 refine:
   washington: "--root KM597072 --clock-filter-iqd 4 --date-inference marginal"
-
   
-
-# Ancestral: a simple string in this repo
+  
+# Ancestral: 
 ancestral:
-  washington: "joint"
+  washington: "--inference reference"
 
 # Translate: not used here, keep empty string. Do not add a reference: so that the build will use the original repos refernce. Will break if hard-coded here. 
 translate:
   washington: ""
 
-# Tip frequencies (temporal trends)
+# Tip frequencies 
 tip_frequencies:
   washington:
     min_date: 2006
