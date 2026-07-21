@@ -4,7 +4,7 @@ export a Nextstrain dataset.
 
 REQUIRED INPUTS:
 
-    metadata        = results/{build}/filtered.tsv
+    metadata        = results/{build}/subsampled.tsv
     tree            = results/{build}/tree.nwk
     branch_lengths  = results/{build}/branch_lengths.json
     node_data       = results/{build}/*.json
@@ -53,7 +53,7 @@ rule export:
     """Exporting data files for for auspice"""
     input:
         tree = "results/{build}/tree.nwk",
-        metadata = "results/{build}/filtered.tsv",
+        metadata = "results/{build}/subsampled.tsv",
         branch_lengths = "results/{build}/branch_lengths.json",
         traits = "results/{build}/traits.json",
         nt_muts = "results/{build}/nt_muts.json",
@@ -93,29 +93,22 @@ rule tip_frequencies:
     """
     input:
         tree = "results/{build}/tree.nwk",
-        metadata = "results/{build}/filtered.tsv",
+        metadata = "results/{build}/subsampled.tsv",
     output:
         tip_freq = "auspice/mumps_{build}_tip-frequencies.json"
     log:
         "logs/{build}/tip_frequencies.txt"
     params:
+        args = lambda w: config["tip_frequencies"][w.build],
         strain_id = config["strain_id_field"],
-        min_date = config["tip_frequencies"]["min_date"],
-        max_date = config["tip_frequencies"]["max_date"],
-        narrow_bandwidth = config["tip_frequencies"]["narrow_bandwidth"],
-        proportion_wide = config["tip_frequencies"]["proportion_wide"]
     shell:
         r"""
         exec &> >(tee {log:q})
 
         augur frequencies \
-            --method kde \
             --tree {input.tree} \
             --metadata {input.metadata} \
             --metadata-id-columns {params.strain_id} \
-            --min-date {params.min_date} \
-            --max-date {params.max_date} \
-            --narrow-bandwidth {params.narrow_bandwidth} \
-            --proportion-wide {params.proportion_wide} \
-            --output {output.tip_freq}
+            --output {output.tip_freq} \
+            {params.args}
         """
