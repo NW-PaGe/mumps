@@ -35,6 +35,7 @@ subsample:
         min_length: 8000
         max_sequences: 4000
         query: "(region=='North America' & ((country!='USA') & (division!='Washington'))) & (MuV_genotype == 'G')"
+        exclude_ambiguous_dates_by: "month"
       context_usa:
         exclude: "../defaults/north-america/exclude.txt"
         # no max_sequences
@@ -42,6 +43,7 @@ subsample:
         min_length: 8000
         max_sequences: 4000
         query: "(country=='USA' & (division!='Washington')) & (MuV_genotype == 'G')"
+        exclude_ambiguous_dates_by: "month"
       washington:
         include: "../washington/include.txt" # To ensure reference genome is in WA dataset
         exclude: "../defaults/north-america/exclude.txt"
@@ -50,6 +52,7 @@ subsample:
         min_length: 8000
         max_sequences: 99999
         query: "(division=='Washington') & (MuV_genotype == 'G')"
+        exclude_ambiguous_dates_by: "month"
 
 # Traits: space-separated column names, as a single string
 traits:
