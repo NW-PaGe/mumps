@@ -67,7 +67,8 @@ translate:
 tip_frequencies:
   washington: >-
     --min-date 2006
-    --interval 3
     --narrow-bandwidth 0.25
     --proportion-wide 0.0
     --method kde
+    --pivot-interval 3
+    --pivot-interval-units "months"
