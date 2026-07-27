@@ -50,11 +50,11 @@ refine:
   
   
 # Ancestral: reconstruct states at internal nodes, including the root. 
-# Fixed root allows for Nextclade compatability while still matching the original build's intended reference. 
+# To do: change to Fixed root (use KM597072, which is the default) to allow for Nextclade compatability while still matching the original build's intended reference. 
 ancestral:
+  root_sequence: "reference.gb"
   washington: >-
     --inference reference
-    --root KM597072
 
 # Translate: not used here, keep empty string. Do not add a reference: so that the build will use the original repos refernce. Will break if hard-coded here. 
 translate:
