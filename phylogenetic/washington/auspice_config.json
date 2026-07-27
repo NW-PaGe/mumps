@@ -42,14 +42,19 @@
       "type": "categorical"
     },
     {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
+    },
+    {
       "key": "division",
       "title": "Division",
       "type": "categorical"
     }
   ],
   "geo_resolutions": [
-    { "key": "division", "title": "State/Province" },
-    "country"
+    "country",
+    "division"
   ],
   "panels": [
     "tree",
