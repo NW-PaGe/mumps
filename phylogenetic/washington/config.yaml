@@ -54,7 +54,7 @@ refine:
 ancestral:
   root_sequence: "reference.gb"
   washington: >-
-    --inference reference
+    --inference "joint"
 
 # Translate: not used here, keep empty string. Do not add a reference: so that the build will use the original repos refernce. Will break if hard-coded here. 
 translate:
