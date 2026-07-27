@@ -57,7 +57,7 @@ subsample:
 # Traits: space-separated column names, as a single string
 traits:
   washington: >-
-    --columns country division MuV_genotype MuV_genotype_nextclade_sh MuV_genotype_nextclade_genome
+    --columns country division
     --sampling-bias-correction 2.5
     --confidence
 
