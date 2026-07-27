@@ -47,6 +47,9 @@ refine:
   washington: >-
     --clock-filter-iqd 4
     --date-inference marginal
+    --timetree
+    --date-confidence
+    --divergence-units "mutations"
   
   
 # Ancestral: reconstruct states at internal nodes, including the root. 
