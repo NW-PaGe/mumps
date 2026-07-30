@@ -6,6 +6,8 @@
 builds:
   - washington
 
+reference: "washington/wa_build_reference.gb"
+
 # Auspice export settings (override defaults)
 export:
   auspice_config: washington/auspice_config.json
@@ -74,7 +76,7 @@ refine:
 # Ancestral: reconstruct states at internal nodes, including the root. 
 # To do: change to Fixed root (use KM597072, which is the default) to allow for Nextclade compatability while still matching the original build's intended reference. 
 ancestral:
-  root_sequence: "reference.gb"
+  root_sequence: "washington/wa_build_reference.gb"
   washington: >-
     --inference "joint"
 
