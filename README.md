@@ -57,8 +57,8 @@ Nextstrain builds are designed for specific purposes and not all types of builds
 
 - **Nomenclature**: CDC genotype nomenclature.
 - **Subsampling**: For this build, subsampling was designed to prioritize Washington State sequences while maintaining appropriate contextual diversity. All available Washington genotype G sequences are retained without limitation to ensure complete coverage of local transmission dynamics. To provide regional perspective, U.S. sequences outside of Washington are subsampled evenly by division, while additional contextual sequences are drawn from Canada and Mexico. A reduced number of global sequences are included to preserve phylogenetic background without overwhelming the Washington-specific signals.
-- **Root selection**: In order to be Nextclade compatable, the reference sequence for the North America and Global builds from the original Nextstrain Mumps repo was used as the forced root. GenBank KM597072 https://www.ncbi.nlm.nih.gov/nuccore/KM597072
-- **Reference selection**: The alignment and mutation calling are performed against a MuV-G reference genome KM597072, which provides a consistent baseline for variant calling and comparative analysis.
+- **Root selection**: In order to be Nextclade compatable, the reference sequence for the North America and Global builds from the original Nextstrain Mumps repo was used as the forced root. GenBank KM597072 https://www.ncbi.nlm.nih.gov/nuccore/KM597072. As of 2026-07-28, this is the same root used in the Nextrstrain build.
+- **Reference selection**: The alignment and mutation calling are performed against a MuV-G reference genome KM597072, which provides a consistent baseline for variant calling and comparative analysis. As of 2026-07-28, this is the same reference used in the Nextrstrain build.
 - **Inclusion/Exclusion**: In terms of inclusion and exclusion, the build accepts only sequences from 2006 onward to reflect the era of genotype G predominance. Sequences from other genotypes, those with incomplete genomes, and those with insufficient or poor-quality metadata are excluded to ensure reliability.
 - **Other adjustments**: Additional adjustments include applying maximum thresholds on the number of contextual sequences retained from outside Washington while leaving Washington itself unrestricted, guaranteeing that no local data are lost. Low-quality or hypervariable regions of the genome are masked during analysis to reduce noise and improve phylogenetic accuracy.
 
@@ -151,21 +151,27 @@ This build can be customized for use by other states. This is configurable by ed
     - **line 2:** "title": "Genomic Epidemiology of Mumps Virus - [Insert State] State Focused Build",
     - **line 4:** {"name": "[Insert name]", "url": "[Insert url]"}
     - **line 12:** "build_url": "[Insert url]",
-      
-  - `mumps/phylogenetic/washington/config.yaml` lines 5, 9, 10, 20, and 35. 
-    - **line 5:**   - [Insert your state's name]
-    - **line 9:**   auspice_config: [Insert your state's folder name]/auspice_config.json
-    - **line 10:**  description: [Insert your state's folder name]/description.md
-    - **line 20:**  [change to match line 5]: [Insert your state's folder name]/subsampling.yaml
-    - **line 35:**  [Change to match line 5 and 20]: >-
-      
+
+  - `mumps/phylogenetic/washington/config.yaml` lines 1, 7, 9, 13, 14, 25, 31, 39, 37, 49, 50, 56, & 79. 
+    - **line 1:**   - [Insert your state's name]
+    - **line 7:**   - [Insert your state's name]
+    - **line 9:** reference: [Insert your state's name]/[use the name of the reference file in your state's folder OR use "reference.gb" to use the Nextstrain default]
+    - **line 13:**   auspice_config: [Insert your state's folder name]/auspice_config.json
+    - **line 14:**  description: [Insert your state's folder name]/description.md
+    - **line 25:**   - [Insert your state's folder name]/subsampling.yaml
+    - **line 31:**   - [Insert your state's folder name]
+    - **line 49:**   - [Insert your state's name] (the actual name doesn't matter here as it's jsut a placeholder for the subsampled selection)
+    - **lines 39, 37, 56:**  query: [Insert your state's name (as used in GenBank)]
+    - **line 50:** include: ../[Insert your state's folder name]/include.txt
+    - **line 79:** root_sequence: [use the name of the reference file in your state's folder OR use "reference.gb" to use the Nextstrain default]
+
+  - `mumps/phylogenetic/washington/wa_build_reference.gb`
+    - If not using the default reference (see config file instrucitons), place the genbank file for the sequence you want to use as a reference and root sequence here (or rename this file for your build). As of July, 2026, wa_build_reference.gb is KM597072, which is the default reference for the primary Nextstrain build.
+
   - `mumps/phylogenetic/washington/description.md`
     - Change the description file to meet your own builds needs.
-   
-  - `mumps/phylogenetic/washington/subsampling.yaml` lines 4, 5, and 14. 
-    - **line 4:**   [Insert your state]_all:
-    - **line 5:**   query: "country == 'USA' & division == '[Insert your state]'"
-    - **line 14:**  query: --query "(country == 'USA') & (division != '[Insert your state]') & (MuV_genotype == 'G')"
+
+
 
 ## Contributing <a name="contributing"></a>
 For any questions please submit them to our [Discussions](https://github.com/orgs/NW-PaGe/discussions) page. Software issues and requests can be logged as a Git [Issue](insert link here).

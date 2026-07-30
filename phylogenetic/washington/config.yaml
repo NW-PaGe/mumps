@@ -6,6 +6,8 @@
 builds:
   - washington
 
+reference: "washington/wa_build_reference.gb"
+
 # Auspice export settings (override defaults)
 export:
   auspice_config: washington/auspice_config.json
@@ -23,35 +25,59 @@ subsampling:
 
 strain_id_field: "accession"
 
-# ---- Per-build settings (IMPORTANT: strings, not nested dicts) ----
-# Filter: CLI flags appended to augur filter
-filter:
-  # Where the workflow looks for per-build include/exclude lists
-  include: "../washington/include.txt" # To ensure reference genome is in WA dataset
-  exclude: "../defaults/north-america/exclude.txt"
-
-  # Per-build “specific” flags are strings indexed by build name
-  #HAVE to have subsample max
-  specific:
-    washington: >-
-      --subsample-max-sequences 99999
-      --min-date 2006
-      --query "region=='North America' & (MuV_genotype == 'G')"
+# Subsampling - this is set up to make it easy to do more restrictive subsampling, but the current geography filter limits are > # of available seqs
+subsample:
+  washington:
+    samples:
+      context_na:
+        exclude: "../defaults/north-america/exclude.txt"
+        # no max_sequences
+        min_date: 2006
+        min_length: 14000
+        max_sequences: 4000
+        query: "(region=='North America' & ((country!='USA') & (division!='Washington'))) & (MuV_genotype == 'G')"
+        exclude_ambiguous_dates_by: "month"
+      context_usa:
+        exclude: "../defaults/north-america/exclude.txt"
+        # no max_sequences
+        min_date: 2006
+        min_length: 14000
+        max_sequences: 4000
+        query: "(country=='USA' & (division!='Washington')) & (MuV_genotype == 'G')"
+        exclude_ambiguous_dates_by: "month"
+      washington:
+        include: "../washington/include.txt" # To ensure reference genome is in WA dataset
+        exclude: "../defaults/north-america/exclude.txt"
+        # no max_sequences
+        min_date: 2006
+        min_length: 14000
+        max_sequences: 99999
+        query: "(division=='Washington') & (MuV_genotype == 'G')"
+        exclude_ambiguous_dates_by: "month"
 
 # Traits: space-separated column names, as a single string
 traits:
-  washington: "country division MuV_genotype MuV_genotype_nextclade_sh MuV_genotype_nextclade_genome"
-  sampling_bias_correction: 2.5
+  washington: >-
+    --columns country division
+    --sampling-bias-correction 2.5
+    --confidence
 
 # Refine: CLI flags as a single string. This calibratess branch lengths, run clock filtering, infer marginal dates. 
 refine:
-  washington: "--clock-filter-iqd 4 --date-inference marginal"
+  washington: >-
+    --clock-filter-iqd 4
+    --date-inference marginal
+    --timetree
+    --date-confidence
+    --divergence-units "mutations"
   
   
 # Ancestral: reconstruct states at internal nodes, including the root. 
-# Fixed root allows for Nextclade compatability while still matching the original build's intended reference. 
+# To do: change to Fixed root (use KM597072, which is the default) to allow for Nextclade compatability while still matching the original build's intended reference. 
 ancestral:
-  washington: "--inference reference --root KM597072"
+  root_sequence: "washington/wa_build_reference.gb"
+  washington: >-
+    --inference "joint"
 
 # Translate: not used here, keep empty string. Do not add a reference: so that the build will use the original repos refernce. Will break if hard-coded here. 
 translate:
@@ -59,9 +85,10 @@ translate:
 
 # Tip frequencies 
 tip_frequencies:
-  washington:
-    min_date: 2006
-    interval: 3
-      # Quarterly narrow_bandwidth or every 3 months (3 /12.0 = 0.25)
-    narrow_bandwidth: 0.25
-    proportion_wide: 0.0
+  washington: >-
+    --min-date 2006
+    --narrow-bandwidth 0.25
+    --proportion-wide 0.0
+    --method kde
+    --pivot-interval 3
+    --pivot-interval-units "months"

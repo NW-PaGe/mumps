@@ -1,7 +1,7 @@
 {
   "title": "Genomic Epidemiology of Mumps Virus - Washington State Focused Build",
   "maintainers": [
-    {"name": "Alena Schroeder, MPH", "url": "https://github.com/NW-PaGe/mumps"}
+    {"name": "WA DOH Molecular Epidemiology Program", "url": "https://doh.wa.gov/about-us/executive-offices/health-and-science/disease-control-and-health-statistics/communicable-disease-epidemiology/molecular-epidemiology-program"}
   ],
   "data_provenance": [
     {
@@ -9,7 +9,7 @@
       "url": "https://www.ncbi.nlm.nih.gov/genbank/"
     }
   ],
-  "build_url": "https://github.com/nextstrain/mumps",
+  "build_url": "https://github.com/NW-PaGe/mumps",
   "colorings": [
     {
       "key": "gt",
@@ -42,14 +42,19 @@
       "type": "categorical"
     },
     {
+      "key": "country",
+      "title": "Country",
+      "type": "categorical"
+    },
+    {
       "key": "division",
       "title": "Division",
       "type": "categorical"
     }
   ],
   "geo_resolutions": [
-    { "key": "division", "title": "State/Province" },
-    "country"
+    "country",
+    "division"
   ],
   "panels": [
     "tree",
@@ -61,7 +66,8 @@
     "map_triplicate": true,
     "color_by": "division",
     "geo_resolution": "division",
-    "tip_label": "strain"
+    "tip_label": "strain",
+    "distance_measure": "div"
   },
   "filters": [
     "division",
