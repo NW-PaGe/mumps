@@ -19,7 +19,6 @@ colors:
   color_schemes: ../defaults/color_schemes.tsv
   color_orderings: ../defaults/color_orderings.tsv
 
-# FIXME: use this?
 # Subsampling (points to WA-specific scheme)
 subsampling:
   washington: washington/subsampling.yaml
