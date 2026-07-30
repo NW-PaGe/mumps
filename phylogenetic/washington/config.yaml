@@ -32,7 +32,7 @@ subsample:
         exclude: "../defaults/north-america/exclude.txt"
         # no max_sequences
         min_date: 2006
-        min_length: 8000
+        min_length: 14000
         max_sequences: 4000
         query: "(region=='North America' & ((country!='USA') & (division!='Washington'))) & (MuV_genotype == 'G')"
         exclude_ambiguous_dates_by: "month"
@@ -40,7 +40,7 @@ subsample:
         exclude: "../defaults/north-america/exclude.txt"
         # no max_sequences
         min_date: 2006
-        min_length: 8000
+        min_length: 14000
         max_sequences: 4000
         query: "(country=='USA' & (division!='Washington')) & (MuV_genotype == 'G')"
         exclude_ambiguous_dates_by: "month"
@@ -49,7 +49,7 @@ subsample:
         exclude: "../defaults/north-america/exclude.txt"
         # no max_sequences
         min_date: 2006
-        min_length: 8000
+        min_length: 14000
         max_sequences: 99999
         query: "(division=='Washington') & (MuV_genotype == 'G')"
         exclude_ambiguous_dates_by: "month"
