@@ -32,7 +32,7 @@ subsample:
       context_na:
         exclude: "../defaults/north-america/exclude.txt"
         # no max_sequences
-        min_date: 2006
+        min_date: "2006-01-01"
         min_length: 14000
         max_sequences: 4000
         query: "(region=='North America' & ((country!='USA') & (division!='Washington'))) & (MuV_genotype == 'G')"
@@ -40,7 +40,7 @@ subsample:
       context_usa:
         exclude: "../defaults/north-america/exclude.txt"
         # no max_sequences
-        min_date: 2006
+        min_date: "2006-01-01"
         min_length: 14000
         max_sequences: 4000
         query: "(country=='USA' & (division!='Washington')) & (MuV_genotype == 'G')"
@@ -49,7 +49,7 @@ subsample:
         include: "../washington/include.txt" # To ensure reference genome is in WA dataset
         exclude: "../defaults/north-america/exclude.txt"
         # no max_sequences
-        min_date: 2006
+        min_date: "2006-01-01"
         min_length: 14000
         max_sequences: 99999
         query: "(division=='Washington') & (MuV_genotype == 'G')"
@@ -86,7 +86,7 @@ translate:
 # Tip frequencies 
 tip_frequencies:
   washington: >-
-    --min-date 2006
+    --min-date "2006-01-01"
     --narrow-bandwidth 0.25
     --proportion-wide 0.0
     --method kde
