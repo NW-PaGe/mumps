@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/nextstrain/shared
 	branch = main
-	commit = ef9afdb9387c9ae2a9e2b5081025c4af241a9b47
-	parent = 2262103f1368f266b8a7391d8bf62d3db0af9b5c
+	commit = 7a986c3c6c52c51d33dd412800b0bb694030f379
+	parent = 89b1a481f13aa65c5e722efa3f6abe1cb000e0c4
 	method = merge
 	cmdver = 0.4.9
